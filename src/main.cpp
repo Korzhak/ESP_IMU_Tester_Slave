@@ -7,6 +7,7 @@
 */
 typedef struct ImuMessage
 {
+	uint32_t deltaT;
 	float accX;
 	float accY;
 	float accZ;
@@ -22,7 +23,8 @@ imuMessage imu;
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 {
 	memcpy(&imu, incomingData, sizeof(imu));
-
+	Serial.print(imu.deltaT);
+	Serial.print(",");
 	Serial.print(imu.accX);
 	Serial.print(",");
 	Serial.print(imu.accY);
